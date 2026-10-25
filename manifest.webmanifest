@@ -3,6 +3,7 @@
   "short_name": "Finanças",
   "description": "Controle financeiro pessoal",
   "lang": "pt-BR",
+  "id": "./?app=financas",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -1,7 +1,7 @@
 // Service worker: deixa o app abrir sem internet.
 // Busca primeiro na rede (pra pegar atualizações) e usa o cache se estiver offline.
 
-const CACHE = 'controle-financeiro-v1';
+const CACHE = 'controle-financeiro-v2';
 const ARQUIVOS = ['./', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (e) => {
