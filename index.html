@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controle Financeiro</title>
+  <meta name="theme-color" content="#2a78d6">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>Controle Financeiro</h1>
+    <div class="mes-nav">
+      <button type="button" id="mesAnterior" aria-label="Mês anterior">‹</button>
+      <span id="mesAtual"></span>
+      <button type="button" id="mesSeguinte" aria-label="Próximo mês">›</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="resumo" aria-label="Resumo do mês">
+      <div class="card">
+        <span class="rotulo">Entradas</span>
+        <strong id="totalEntradas" class="valor positivo">R$ 0,00</strong>
+      </div>
+      <div class="card">
+        <span class="rotulo">Saídas</span>
+        <strong id="totalSaidas" class="valor negativo">R$ 0,00</strong>
+      </div>
+      <div class="card">
+        <span class="rotulo">Saldo do mês</span>
+        <strong id="saldo" class="valor">R$ 0,00</strong>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2 id="tituloForm">Novo lançamento</h2>
+      <form id="form" autocomplete="off">
+        <div class="tipo">
+          <label><input type="radio" name="tipo" value="saida" checked> Saída</label>
+          <label><input type="radio" name="tipo" value="entrada"> Entrada</label>
+        </div>
+        <div class="campos">
+          <label>Data
+            <input type="date" id="data" required>
+          </label>
+          <label>Descrição
+            <input type="text" id="descricao" placeholder="Ex.: Mercado" required>
+          </label>
+          <label>Categoria
+            <input type="text" id="categoria" list="listaCategorias" placeholder="Ex.: Alimentação" required>
+            <datalist id="listaCategorias"></datalist>
+          </label>
+          <label>Valor (R$)
+            <input type="text" id="valor" inputmode="decimal" placeholder="0,00" required>
+          </label>
+        </div>
+        <div class="acoes-form">
+          <button type="submit" class="primario" id="btnSalvar">Adicionar</button>
+          <button type="button" id="btnCancelar" hidden>Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-painel">
+        <h2>Lançamentos do mês</h2>
+        <input type="search" id="busca" placeholder="Buscar...">
+      </div>
+      <div class="tabela-wrap">
+        <table id="tabela">
+          <thead>
+            <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th class="num">Valor</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="vazio" class="vazio">Nenhum lançamento neste mês.</p>
+    </section>
+
+    <section class="graficos">
+      <div class="painel">
+        <h2>Gastos por categoria</h2>
+        <div id="graficoCategorias" class="grafico"></div>
+      </div>
+      <div class="painel">
+        <h2>Últimos 6 meses</h2>
+        <div class="legenda">
+          <span><i class="cor-entrada"></i>Entradas</span>
+          <span><i class="cor-saida"></i>Saídas</span>
+        </div>
+        <div id="graficoMeses" class="grafico"></div>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2>Exportar e backup</h2>
+      <p class="dica">Os dados ficam salvos neste navegador. Faça backup de vez em quando e use “Restaurar” pra levar pra outro aparelho.</p>
+      <div class="botoes">
+        <button type="button" id="btnExcel">Baixar planilha (Excel)</button>
+        <button type="button" id="btnBackup">Fazer backup</button>
+        <label class="botao">Restaurar backup
+          <input type="file" id="arquivoBackup" accept=".json" hidden>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
